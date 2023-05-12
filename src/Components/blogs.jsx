@@ -29,17 +29,24 @@ export function BlogProvider(props) {
             username:username
         }
 
-        const response =await api.post('/blogs',blog);
+        const response = await api.post('/blogs',blog);
+      
         if(response){
-            let currentBlogs = localStorage.getItem('blogs');
-            localStorage.setItem('blogs',currentBlogs+1);   
+            let currentBlogs = parseInt(localStorage.getItem('blogs'));
+            let id = JSON.parse(localStorage.getItem('id'));
+            currentBlogs+=1;
+            localStorage.setItem('blogs',currentBlogs);  
+            const response2 = await api.patch(`/users/${id}`, {
+                blogs: currentBlogs
+             });
         }
     }
     const deleteBlog = async(id)=>{
         const response = await api.delete(`/blogs/${id}`);
         if(response){
-            let currentBlogs = localStorage.getItem('blogs');
-            localStorage.setItem('blogs',currentBlogs-1);   
+            let currentBlogs = parseInt(localStorage.getItem('blogs'));
+            currentBlogs-=1;
+            localStorage.setItem('blogs',currentBlogs);   
         }
 
     }
@@ -59,9 +66,11 @@ export function BlogProvider(props) {
         //return array blogs;
     }
 return (
-    <BlogContext.Provider value={{blogs,newBlog,deleteBlog,editBlog,BlogsForUser}}>
+    <BlogContext.Provider value={{ blogs,newBlog,deleteBlog,editBlog,BlogsForUser }}>
         {props.children}
     </BlogContext.Provider>
+
+
 );
 
 }

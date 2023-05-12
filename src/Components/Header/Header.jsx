@@ -35,10 +35,11 @@ export default function Header() {
             <li className="nav-item">
               <a className="nav-link " href="#">Blogs</a>
             </li>
+            {user!=null && 
             <li className="nav-item">
               <a className="nav-link" href="#">New Blog</a>
             </li>
-
+          }
             <li className="nav-item" style={{ float: "right"}}>
               <Link to={"/AddBook"}>
                 <button className='btn btn-success rounded' >New Book <span>&#x2719;</span></button>

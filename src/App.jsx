@@ -15,13 +15,17 @@ import Register from './Components/Register/Register';
 import { UserProvider } from './Components/users';
 import Profile from './Components/Profile/Profile';
 import EditProfile from './Components/EditProfile/EditProfile';
+import NewBlog from './Components/NewBlog/NewBlog';
+import { BlogProvider } from './Components/blogs';
 
 function App() {
   return (
     <>
       <UserProvider>
+        <BlogProvider>
         <Header />
        
+      
         <Routes>
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
@@ -34,12 +38,14 @@ function App() {
           <Route path="/Profile" element={<Profile />}/>
           <Route path="/EditProfile" element={<EditProfile/>}/>
           <Route path="/AddBook" element={<AddBook />} />
+          <Route path="newBlog" element={<NewBlog/>} />
           <Route path="/" element={<Store />} />
           <Route path="/Home" element={<Store />} />
           {/* <Route path="/Header" element={Header} /> */}
           {/* <Route path="*" element={<NotFound />} />
         <Route path="*" element={ <NotFound />}/> */}
         </Routes>
+        </BlogProvider>
       </UserProvider>
     </>
   );

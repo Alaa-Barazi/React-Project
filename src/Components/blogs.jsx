@@ -21,12 +21,14 @@ export function BlogProvider(props) {
     }, []);
 //local Storage!!!!
     const newBlog = async(title,text,img,username) =>{
+        const currentDate = new Date();
         const blog = {
             id:uuid(),
             title:title,
             body:text,
             imgURL:img,
-            username:username
+            username:username,
+            date:currentDate.toLocaleDateString()
         }
 
         const response = await api.post('/blogs',blog);

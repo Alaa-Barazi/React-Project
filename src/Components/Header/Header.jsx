@@ -33,11 +33,11 @@ export default function Header() {
               <a className="nav-link" href='/Home' onClick={() => navigate("/Home")}>Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link " href="#">Blogs</a>
+              <a className="nav-link " href="/Blogs">Blogs</a>
             </li>
             {user!=null && 
             <li className="nav-item">
-              <a className="nav-link" href="#">New Blog</a>
+              <a className="nav-link" href="/newBlog">New Blog</a>
             </li>
           }
             <li className="nav-item" style={{ float: "right"}}>

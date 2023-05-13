@@ -17,6 +17,7 @@ import Profile from './Components/Profile/Profile';
 import EditProfile from './Components/EditProfile/EditProfile';
 import NewBlog from './Components/NewBlog/NewBlog';
 import { BlogProvider } from './Components/blogs';
+import Blogs from './Components/Blogs/Blogs';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <UserProvider>
         <BlogProvider>
         <Header />
-       
+      
       
         <Routes>
           <Route path="/Login" element={<Login />} />
@@ -38,7 +39,8 @@ function App() {
           <Route path="/Profile" element={<Profile />}/>
           <Route path="/EditProfile" element={<EditProfile/>}/>
           <Route path="/AddBook" element={<AddBook />} />
-          <Route path="newBlog" element={<NewBlog/>} />
+          <Route path="/newBlog" element={<NewBlog/>} />
+          <Route path="/Blogs" element={ <Blogs/>} />
           <Route path="/" element={<Store />} />
           <Route path="/Home" element={<Store />} />
           {/* <Route path="/Header" element={Header} /> */}

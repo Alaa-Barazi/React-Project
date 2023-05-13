@@ -4,16 +4,18 @@ import { BlogContext } from '../blogs';
 import { Link, useNavigate } from "react-router-dom";
 
 export default function NewBlog() {
-  const { newBlog, deleteBlog, editBlog, BlogsForUser } = useContext(BlogContext);
+  const { blogs,newBlog, deleteBlog, editBlog, BlogsForUser } = useContext(BlogContext);
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [img, setImg] = useState("");
   const username = JSON.parse(localStorage.getItem("username"));
- 
+ const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    
     newBlog(title, text, img, username);
+    alert('Added Succefully');
+    //Later on navigate to my blogs
+    navigate('/Home');
   }
 
   return (

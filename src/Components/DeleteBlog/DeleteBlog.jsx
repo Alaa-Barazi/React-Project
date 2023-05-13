@@ -7,11 +7,15 @@ import Modal from 'react-bootstrap/Modal';
     const {blogs, newBlog, deleteBlog, editBlog, BlogsForUser } = useContext(BlogContext);
     const [show, setShow] = useState(true);
     const { blogID } = useParams();
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const navigate = useNavigate();
+    const handleClose = () => {
+      setShow(false);
+      navigate('/Blogs');
+    }
     const handleDelete = () =>{
         handleClose();
         deleteBlog(blogID);
+        navigate('/Blogs');
     }
     return (
       <>

@@ -26,7 +26,7 @@ export default function Blogs(){
           <p className="card-text mb-auto">{blog.body}</p>
           <a href="#" className="stretched-link">Continue reading</a>
         </div>
-        <div className="col-auto d-none d-lg-block" >
+        <div key={blog.id} className="col-auto d-none d-lg-block" >
           <svg className="bd-placeholder-img" width="50" height="250"  role="img" ></svg>
                     <img src={blog.imgURL} 
                      style={{position:"static",width:"250px",height:"200px",marginTop:"15px"
@@ -41,8 +41,8 @@ export default function Blogs(){
   Delete
 </Link>
            &nbsp; 
-           <Link to={`/DeleteBlog/${blog.id}`} className="btn btn-success rounded">
-                Edit
+           <Link to={"/"} className="btn btn-success rounded">
+            Edit
             </Link>
           </div>
          </div>}

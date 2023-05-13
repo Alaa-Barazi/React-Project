@@ -37,15 +37,15 @@ function App() {
           <Route path="/Details" element={<Details />}>
             <Route path=":bookID" element={<Details />} />
           </Route>
-          {/* <Route path="/DeleteBlog" element={<DeleteBlog />}>
+          <Route path="/DeleteBlog" element={<DeleteBlog />}>
             <Route path=":blogID" element={<DeleteBlog/>}/>
-          </Route> */}
-          <Route path="/DeleteBlog/:blogID" element={<DeleteBlog />} />
+          </Route>
           <Route path="/Profile" element={<Profile />}/>
           <Route path="/EditProfile" element={<EditProfile/>}/>
           <Route path="/AddBook" element={<AddBook />} />
           <Route path="/newBlog" element={<NewBlog/>} />
-          <Route path="/Blogs" element={ <Blogs/>} />
+          <Route path="/Blogs" element={ <Blogs/>} 
+          />
           <Route path="/" element={<Store />} />
           <Route path="/Home" element={<Store />} />
           {/* <Route path="/Header" element={Header} /> */}

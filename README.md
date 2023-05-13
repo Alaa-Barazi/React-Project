@@ -17,9 +17,14 @@ Additional features are coming soooon:bangbang:
 
 
 <h3>Some pictures:</h3>
-<img src= "https://github.com/Alaa-Barazi/React-Project/assets/127497841/a30b8d2f-c518-4c06-9517-d0f0614ad7c2"/> 
+<img src="https://github.com/Alaa-Barazi/React-Project/assets/127497841/fcab12c4-cd97-4c80-a423-3a7640fb7f43" />
+
 
 
 <br/>
-<img src="https://github.com/Alaa-Barazi/React-Project/assets/127497841/88cf7c67-6e30-4302-83ea-32eb744cc7b4"/>
+<img src="https://github.com/Alaa-Barazi/React-Project/assets/127497841/79167e38-5963-4c01-87c9-e9e5cc6c5971"/>
+
+<br/>
+<img src="https://github.com/Alaa-Barazi/React-Project/assets/127497841/c417fa48-644f-4701-91f4-17f9c0fef5a5"/>
+
 

@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useContext } from 'react';
 import { BlogContext } from '../blogs';
+import { Link } from 'react-router-dom';
 export default function Blogs(){
     const {blogs, newBlog, deleteBlog, editBlog, BlogsForUser } = useContext(BlogContext);
     const username = JSON.parse(localStorage.getItem("username"));
@@ -14,9 +15,9 @@ export default function Blogs(){
         <button onClick={()=>setBlogs(blogs)} className='btn btn-primary'>All Blogs </button>
            <br/> <br/>
             <div className="row mb-2">
-                {blogsToShow.map((blog,index)=>
+                {blogsToShow.map((blog)=>
                 <>
-                 <div className="col-md-6" key={index}>
+                 <div key={blog.id} className="col-md-6" >
       <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div className="col p-4 d-flex flex-column position-static">
           <strong className="d-inline-block mb-2 text-primary">Article</strong>
@@ -25,8 +26,8 @@ export default function Blogs(){
           <p className="card-text mb-auto">{blog.body}</p>
           <a href="#" className="stretched-link">Continue reading</a>
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="50" height="250"  role="img" ></svg>
+        <div className="col-auto d-none d-lg-block" >
+          <svg className="bd-placeholder-img" width="50" height="250"  role="img" ></svg>
                     <img src={blog.imgURL} 
                      style={{position:"static",width:"250px",height:"200px",marginTop:"15px"
                 , alignItems:"center",borderRadius:"15px" }}/>
@@ -34,10 +35,16 @@ export default function Blogs(){
         {blog.username === username &&
          <div className="col-md-">
            <div className="btn-group m-1 btn-group-sm ">
-           <input type="reset" value="Delete" className="btn btn-danger rounded" /> 
+        
+
+           <Link to={`/DeleteBlog/${blog.id}`} className="btn btn-danger rounded">
+  Delete
+</Link>
            &nbsp; 
-             <input type="submit" value="Edit" className="btn btn-success rounded" />
-           </div>
+           <Link to={`/DeleteBlog/${blog.id}`} className="btn btn-success rounded">
+                Edit
+            </Link>
+          </div>
          </div>}
       </div>
     </div>

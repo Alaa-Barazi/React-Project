@@ -18,6 +18,7 @@ import EditProfile from './Components/EditProfile/EditProfile';
 import NewBlog from './Components/NewBlog/NewBlog';
 import { BlogProvider } from './Components/blogs';
 import Blogs from './Components/Blogs/Blogs';
+import DeleteBlog from './Components/deleteBlog/deleteBlog';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
         <BlogProvider>
         <Header />
       
-      
+     
         <Routes>
           <Route path="/Login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
@@ -36,6 +37,10 @@ function App() {
           <Route path="/Details" element={<Details />}>
             <Route path=":bookID" element={<Details />} />
           </Route>
+          {/* <Route path="/DeleteBlog" element={<DeleteBlog />}>
+            <Route path=":blogID" element={<DeleteBlog/>}/>
+          </Route> */}
+          <Route path="/DeleteBlog/:blogID" element={<DeleteBlog />} />
           <Route path="/Profile" element={<Profile />}/>
           <Route path="/EditProfile" element={<EditProfile/>}/>
           <Route path="/AddBook" element={<AddBook />} />

@@ -48,7 +48,10 @@ export function BlogProvider(props) {
         if(response){
             let currentBlogs = parseInt(localStorage.getItem('blogs'));
             currentBlogs-=1;
-            localStorage.setItem('blogs',currentBlogs);   
+            localStorage.setItem('blogs',currentBlogs); 
+            const response2 = await api.patch(`/users/${id}`, {
+                blogs: currentBlogs
+             });  
         }
 
     }

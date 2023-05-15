@@ -64,11 +64,14 @@ export default function AllRequests() {
                             </div>
                         </Link> */}
                                     {/* addhandler for books and then alert (added succefully) */}
-                                    <button className='btn btn-outline-info'
-
-                                        onClick={() => addBookHandler(book.id, book.name, book.img, book.author, book.price)}
-
-                                    >Add to store</button>
+                         <button className='btn btn-primary'
+                                        onClick={() => 
+                                        addBookHandler(book.id, book.name, book.img, book.author, book.price)}>Add</button>
+                                        &nbsp;
+                        <button className='btn btn-danger'
+                                        onClick={() => 
+                                           { deletefromStore(book.id); window.location.reload(false)}}
+                                    >Delete</button>
 
                                 </div>
 

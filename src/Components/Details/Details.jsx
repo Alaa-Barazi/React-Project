@@ -7,7 +7,7 @@ export default function Details({ setBooks }) {
     const { bookID } = useParams();
     const navigate = useNavigate();
     const [book, setBook] = useState({});
-
+    const username = JSON.parse(localStorage.getItem('username'));
     const retrieveBook = async () => {
         const response = await api.get(`/books/${bookID}`);
         return response.data;
@@ -61,13 +61,13 @@ export default function Details({ setBooks }) {
                                         
                                 </div>
                                 <Link to="/" className="btn btn-primary">
-                Back
-            </Link>
-
+                        Back </Link>
+                        {username==='Admin' && <>
             <button className="btn btn-danger" onClick={() => removeBookHandler()}>Delete</button>
             <Link to={`/EditBook/${bookID}`} className="btn btn-success">
                 Edit
             </Link>
+            </>   }
                             </div>
                         </div>
                         <div className="col-md-5 d-sm-none d-md-block">

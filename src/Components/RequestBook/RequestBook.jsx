@@ -10,7 +10,7 @@ export default function RequestBook(){
     const [price,priceChange] = useState("");
     const [allbooks, setAllBooks] = useState([]);
     const navigate=useNavigate();
-    const HandlseSubmit =()=>{
+    const HandleSubmit =()=>{
         addBookHandler();
         navigate("/Home");
     }
@@ -22,15 +22,14 @@ export default function RequestBook(){
    
     getAllOtherBooks();
     },[])
-    const notExists = (name,author) =>{
-      allbooks.map((book)=>{
-        if(book.name===name && book.author===author)
-        return true;
-      })
-      return false;
-  }
+    const notExists = (name, author) => {
+      return !allbooks.some((book) =>
+        book.name.toLowerCase().trim() === name.toLowerCase().trim() &&
+        book.author.toLowerCase().trim() === author.toLowerCase().trim()
+      );
+    };
     const addBookHandler = async() =>{
-     if(!notExists(name,author)){
+     if(notExists(name,author)){
         const book={
         name:name,
         img:img,
@@ -48,7 +47,7 @@ export default function RequestBook(){
       }
     }
     return (
-        <form onSubmit={HandlseSubmit} className="container-fluid vh1-00" style={{ marginTop: "50px" ,width:"600px",textAlign:"left"}}>
+        <form onSubmit={HandleSubmit} className="container-fluid vh1-00" style={{ marginTop: "50px" ,width:"600px",textAlign:"left"}}>
         <div>
             <h2>Add New Book</h2>
           <div className="form-group col-md-18" >

@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useContext } from 'react';
 import { BlogContext } from '../blogs';
-import { Link,useNavigate } from 'react-router-dom';
+import { Link,useNavigate,Outlet } from 'react-router-dom';
 export default function Blogs() {
   const { blogs, newBlog, deleteBlog, editBlog, BlogsForUser } = useContext(BlogContext);
   const username = JSON.parse(localStorage.getItem("username"));
@@ -59,6 +59,7 @@ export default function Blogs() {
           </>
         )}
       </div>
+      <Outlet/>
     </>
   )
 

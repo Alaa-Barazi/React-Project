@@ -18,6 +18,20 @@ useEffect(() => {
    }
    getAllBooks();
        }, []);
+       const addBookHandler = async(name,img,author,price) =>{
+        const book={
+        name:name,
+        img:img,
+        author:author,
+        price:price
+        }
+        const request ={
+            id:uuid(),
+            ...book
+        }
+        const response =await api.post("/requestedBooks",request);
+    }
+   // const deletefromStore = as
        return (
         <>
         <br/>
@@ -41,7 +55,11 @@ useEffect(() => {
                             </div>
                         </Link> */}
                         {/* addhandler for books and then alert (added succefully) */}
-                        <button className='btn btn-outline-info'>Add to store</button>
+                        <button className='btn btn-outline-info'
+                        
+                        onClick={()=>addBookHandler(book.name,book.img,book.author,book.price)}
+                        
+                        >Add to store</button>
 
                     </div>
 

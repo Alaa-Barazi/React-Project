@@ -31,7 +31,7 @@ function App() {
 
           <Routes>
             <Route path="/RequestBook" element={<RequestBook />} />
-            <Route path="/AllRequests" element={<AllRequests />} />
+            <Route path="/AllRequests" element={<AllRequests/>}/>
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/EditBook" element={<EditBook />}>
@@ -45,9 +45,9 @@ function App() {
             <Route path="/AddBook" element={<AddBook />} />
             <Route path="/newBlog" element={<NewBlog />} />
             <Route path="/Blogs" element={<Blogs />}   >
-             
+            <Route path="DeleteBlog/:blogID" element={<DeleteBlog />} />
+
             </Route>
-            <Route path="/DeleteBlog/:blogID" element={<DeleteBlog />} />
             <Route path="/" element={<Store />} />
             <Route path="/Home" element={<Store />} />
             {/* <Route path="/Header" element={Header} /> */}

@@ -30,7 +30,7 @@ export default function Blogs() {
                   <h2 className="mb-0">{blog.title}</h2>
                   <div className="mb-1 text-muted">{blog.date}</div>
                   <p className="card-text mb-auto">{blog.body}</p>
-                  <a href="#" className="stretched-link">Continue reading</a>
+                  {/* <a  className="stretched-link">Continue reading</a> */}
                 </div>
                 <div key={blog.id} className="col-auto d-none d-lg-block" >
                   <svg className="bd-placeholder-img" width="50" height="250" role="img" ></svg>
@@ -43,7 +43,7 @@ export default function Blogs() {
                 {blog.username === username &&
                   <div className="col-md-">
                     <div className="btn-group m-1 btn-group-sm ">
-                      <Link to={`/DeleteBlog/${blog.id}`}
+                      <Link to={`DeleteBlog/${blog.id}`}
                         onClick={clickHandler}
                         className="btn btn-danger rounded">
                         Delete

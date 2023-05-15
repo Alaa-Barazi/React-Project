@@ -25,33 +25,32 @@ function App() {
     <>
       <UserProvider>
         <BlogProvider>
-        <Header />
-      
-     
-        <Routes>
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/EditBook" element={<EditBook />}>
-            <Route path=":bookID" element={<EditBook />} />
-          </Route>
-          <Route path="/Details" element={<Details />}>
-            <Route path=":bookID" element={<Details />} />
-          </Route>
-          <Route path="/DeleteBlog" element={<DeleteBlog />}>
-            <Route path=":blogID" element={<DeleteBlog/>}/>
-          </Route>
-          <Route path="/Profile" element={<Profile />}/>
-          <Route path="/EditProfile" element={<EditProfile/>}/>
-          <Route path="/AddBook" element={<AddBook />} />
-          <Route path="/newBlog" element={<NewBlog/>} />
-          <Route path="/Blogs" element={ <Blogs/>} 
-          />
-          <Route path="/" element={<Store />} />
-          <Route path="/Home" element={<Store />} />
-          {/* <Route path="/Header" element={Header} /> */}
-          {/* <Route path="*" element={<NotFound />} />
+          <Header />
+
+
+          <Routes>
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
+            <Route path="/EditBook" element={<EditBook />}>
+              <Route path=":bookID" element={<EditBook />} />
+            </Route>
+            <Route path="/Details" element={<Details />}>
+              <Route path=":bookID" element={<Details />} />
+            </Route>
+            <Route path="/Profile" element={<Profile />} />
+            <Route path="/EditProfile" element={<EditProfile />} />
+            <Route path="/AddBook" element={<AddBook />} />
+            <Route path="/newBlog" element={<NewBlog />} />
+            <Route path="/Blogs" element={<Blogs />}   >
+             
+            </Route>
+            <Route path="/DeleteBlog/:blogID" element={<DeleteBlog />} />
+            <Route path="/" element={<Store />} />
+            <Route path="/Home" element={<Store />} />
+            {/* <Route path="/Header" element={Header} /> */}
+            {/* <Route path="*" element={<NotFound />} />
         <Route path="*" element={ <NotFound />}/> */}
-        </Routes>
+          </Routes>
         </BlogProvider>
       </UserProvider>
     </>

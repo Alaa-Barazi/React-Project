@@ -28,14 +28,15 @@ export default function Header() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href='/Home' onClick={() => navigate("/Home")}>Home</a>
+              <button className="btn rounded" onClick={() => navigate("/Home")}>Home</button>
             </li>
             <li className="nav-item">
-              <a className="nav-link " href="/Blogs">Blogs</a>
+            <button className="btn rounded" onClick={() => navigate("/Blogs")}>Blogs  </button>
             </li>
             {user != null &&
               <li className="nav-item">
-                <a className="nav-link" href="/newBlog">New Blog</a>
+              <button className='btn rounded' onClick={() => navigate("/newBlog")}>
+              New Blog  </button>
               </li>
             }
             {user === 'Admin' && <li className="nav-item" style={{ float: "right" }}>

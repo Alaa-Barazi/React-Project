@@ -25,7 +25,7 @@ export default function Blogs() {
                   <div className="mb-1 text-muted">{blog.date}</div>
                   <p className="card-text mb-auto">{blog.body}</p>
                   {/*
-                  modal with the bodyof the blog
+                  modal => Blog's Content
                   
                   <a href='/Store' className="stretched-link">Continue reading</a> */}
                 </div>
@@ -38,8 +38,8 @@ export default function Blogs() {
                     }} />
                 </div>
                 {blog.username === username &&
-                  <div className="col-md-">
-                    <div className="btn-group m-1 btn-group-sm ">
+                  <div className="col-md-0">
+                    <div className="btn-group m-1 btn-group-md ">
                       <Link to={`/DeleteBlog/${blog.id}`}
                         className="btn btn-danger rounded">
                         Delete

@@ -1,16 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import { useState, useContext } from 'react';
 import { BlogContext } from '../blogs';
-import { Link,useNavigate,Outlet } from 'react-router-dom';
+import { Link,Outlet } from 'react-router-dom';
 export default function Blogs() {
   const { blogs, newBlog, deleteBlog, editBlog, BlogsForUser } = useContext(BlogContext);
   const username = JSON.parse(localStorage.getItem("username"));
-  const [show, setShow] = useState("None");
-  const navigate = useNavigate();
-  const clickHandler = (e) => {
-    e.preventDefault();
-   
-  }
   const [blogsToShow, setBlogs] = useState([]);
   return (
     <>
@@ -30,7 +24,10 @@ export default function Blogs() {
                   <h2 className="mb-0">{blog.title}</h2>
                   <div className="mb-1 text-muted">{blog.date}</div>
                   <p className="card-text mb-auto">{blog.body}</p>
-                  {/* <a  className="stretched-link">Continue reading</a> */}
+                  {/*
+                  modal with the bodyof the blog
+                  
+                  <a href='/Store' className="stretched-link">Continue reading</a> */}
                 </div>
                 <div key={blog.id} className="col-auto d-none d-lg-block" >
                   <svg className="bd-placeholder-img" width="50" height="250" role="img" ></svg>
@@ -43,8 +40,7 @@ export default function Blogs() {
                 {blog.username === username &&
                   <div className="col-md-">
                     <div className="btn-group m-1 btn-group-sm ">
-                      <Link to={`DeleteBlog/${blog.id}`}
-                        onClick={clickHandler}
+                      <Link to={`/DeleteBlog/${blog.id}`}
                         className="btn btn-danger rounded">
                         Delete
                       </Link>

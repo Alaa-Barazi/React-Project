@@ -44,8 +44,12 @@ function App() {
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/AddBook" element={<AddBook />} />
             <Route path="/newBlog" element={<NewBlog />} />
-            <Route path="/Blogs" element={<Blogs />}   >
-            <Route path="DeleteBlog/:blogID" element={<DeleteBlog />} />
+            <Route path="/Blogs" element={<Blogs />} /> 
+              <Route path="/DeleteBlog" element={<DeleteBlog />}>
+              <Route path=":blogID" element={<Details />} />
+
+              
+            {/* <Route path="DeleteBlog/:blogID" element={<DeleteBlog />} /> */}
 
             </Route>
             <Route path="/" element={<Store />} />

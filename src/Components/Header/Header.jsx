@@ -15,11 +15,9 @@ export default function Header() {
     setShowDropdown(false);
   }
   const [showDropdown, setShowDropdown] = useState(false);
-
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg  navbar-light" style={{ backgroundColor: "#e3f2fd", position: "fixed", top: "0", width: "100%", left: "0" }}>
@@ -41,15 +39,14 @@ export default function Header() {
               </li>
             }
             {user === 'Admin' && <li className="nav-item" style={{ float: "right" }}>
-              <Link to={"/AddBook"}>
-                <button className='btn btn-success rounded' >New Book <span>&#x2719;</span></button>
+              <Link to={"/AllRequests"}>
+                <button className='btn rounded' >AllRequests </button>
               </Link>
             </li>
             }
-            &nbsp;
-             {user === 'Admin' && <li className="nav-item" style={{ float: "right" }}>
-              <Link to={"/AllRequests"}>
-                <button className='btn rounded' >AllRequests </button>
+            {user === 'Admin' && <li className="nav-item" style={{ float: "right" }}>
+              <Link to={"/AddBook"}>
+                <button className='btn btn-success rounded' >New Book <span>&#x2719;</span></button>
               </Link>
             </li>
             }
@@ -70,7 +67,6 @@ export default function Header() {
             <li className="nav-item">
               {user != null &&
                 <div className="profile-dropdown" style={{ right: "0", position: "fixed" }}>
-                  {/* onMouseOut={toggleDropdown} */}
                   <div className="profile-circle" onClick={toggleDropdown} >
                     <img
                       src={img}
@@ -78,7 +74,6 @@ export default function Header() {
                       style={{ width: "50px", height: "50px", borderRadius: "50%", float: "right", right: "0" }}
                     />
                   </div>
-
                   {showDropdown && (
                     <ul className="dropdown-menu ">
                       <Link to={"/Profile"}>
@@ -87,13 +82,11 @@ export default function Header() {
                         </li>
                       </Link>
                       <li>Settings</li>
-
                       <Link to={"/Login"}>
                         <li>
                           <button className='btn btn-danger' onClick={() => logOut()}>LogOut <span>&#x27AD;</span></button>
                         </li>
                       </Link>
-
                     </ul>
                   )}
                 </div>

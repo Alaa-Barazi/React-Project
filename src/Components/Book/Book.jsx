@@ -6,8 +6,10 @@ export default function Book({ book }) {
     return (
         <>
             <div className='column '>
-                <div className="card d-flex flex-column" style={{width:"170px",height:"265px"}}>
+                <div className="card d-flex flex-column" style={{width:"180px",height:"270px"}}>
+                    <center>
                     <img src={book.imgUrl} className='card-img' style={{width:"150px",height:"150px"}} />
+                    </center>
                     <div className='card-body'>
                         <h6 className='card-title'>{book.name}</h6>
                         {/* <p className='text-primary font-weight-bolder'>By:{book.author}</p> */}

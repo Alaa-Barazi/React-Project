@@ -22,7 +22,7 @@ export default function Header() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg  navbar-light"  style={{backgroundColor: "#e3f2fd",position:"fixed",top:"0",width:"100%",left:"0"}}>
+      <nav className="navbar navbar-expand-lg  navbar-light" style={{ backgroundColor: "#e3f2fd", position: "fixed", top: "0", width: "100%", left: "0" }}>
         <a className="navbar-brand align-baseline" href="/Home">   <h3>The Store</h3></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -35,36 +35,41 @@ export default function Header() {
             <li className="nav-item">
               <a className="nav-link " href="/Blogs">Blogs</a>
             </li>
-            {user!=null && 
-            <li className="nav-item">
-              <a className="nav-link" href="/newBlog">New Blog</a>
-            </li>
-          }
-          {user==='Admin' &&  <li className="nav-item" style={{ float: "right"}}>
+            {user != null &&
+              <li className="nav-item">
+                <a className="nav-link" href="/newBlog">New Blog</a>
+              </li>
+            }
+            {user === 'Admin' && <li className="nav-item" style={{ float: "right" }}>
               <Link to={"/AddBook"}>
                 <button className='btn btn-success rounded' >New Book <span>&#x2719;</span></button>
               </Link>
             </li>
             }
-            { user!=='Admin' && 
- <li className="nav-item" style={{ float: "right"}}>
- <Link to={"/AddBook"}>
-   <button className='btn btn-success rounded' >Request Book <span>&#x2719;</span></button>
- </Link>
-</li>
-
-
+            &nbsp;
+             {user === 'Admin' && <li className="nav-item" style={{ float: "right" }}>
+              <Link to={"/AllRequests"}>
+                <button className='btn rounded' >AllRequests </button>
+              </Link>
+            </li>
+            }
+            {user !== 'Admin' && user != null &&
+              <li className="nav-item" style={{ float: "right" }}>
+                <Link to={"/RequestBook"}>
+                  <button className='btn btn-success rounded' >Request Book <span>&#x2719;</span></button>
+                </Link>
+              </li>
             }
             <li>
               {user == null &&
                 <Link to={"/Login"}>
-                  <button className='btn btn-info' style={{right:"0",position:"fixed" }}>Login <span>&#x27AD;</span></button>
+                  <button className='btn btn-info' style={{ right: "0", position: "fixed" }}>Login <span>&#x27AD;</span></button>
                 </Link>
               }
             </li>
             <li className="nav-item">
               {user != null &&
-                <div className="profile-dropdown" style={{right:"0",position:"fixed" }}>
+                <div className="profile-dropdown" style={{ right: "0", position: "fixed" }}>
                   {/* onMouseOut={toggleDropdown} */}
                   <div className="profile-circle" onClick={toggleDropdown} >
                     <img

@@ -19,6 +19,8 @@ import NewBlog from './Components/NewBlog/NewBlog';
 import { BlogProvider } from './Components/blogs';
 import Blogs from './Components/Blogs/Blogs';
 import DeleteBlog from './Components/deleteBlog/deleteBlog';
+import RequestBook from './Components/RequestBook/RequestBook';
+import AllRequests from './Components/AllRequests/AllRequests';
 
 function App() {
   return (
@@ -27,8 +29,9 @@ function App() {
         <BlogProvider>
           <Header />
 
-
           <Routes>
+            <Route path="/RequestBook" element={<RequestBook />} />
+            <Route path="/AllRequests" element={<AllRequests />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/EditBook" element={<EditBook />}>

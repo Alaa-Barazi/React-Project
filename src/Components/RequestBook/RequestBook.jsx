@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../api/books';
 import  uuid  from  "uuid4";
@@ -8,12 +8,29 @@ export default function RequestBook(){
     const [author,authorChange] = useState("");
     const [img,imgChange] = useState("");
     const [price,priceChange] = useState("");
+    const [allbooks, setAllBooks] = useState([]);
     const navigate=useNavigate();
     const HandlseSubmit =()=>{
         addBookHandler();
         navigate("/Home");
     }
+    useEffect(()=>{
+      const getAllOtherBooks = async () =>{
+        const others= await api.get("/books");
+        if(others) setAllBooks(others.data);
+    }
+   
+    getAllOtherBooks();
+    },[])
+    const notExists = (name,author) =>{
+      allbooks.map((book)=>{
+        if(book.name===name && book.author===author)
+        return true;
+      })
+      return false;
+  }
     const addBookHandler = async() =>{
+     if(!notExists(name,author)){
         const book={
         name:name,
         img:img,
@@ -25,6 +42,10 @@ export default function RequestBook(){
             ...book
         }
         const response =await api.post("/requestedBooks",request);
+      }
+      else{
+        alert("Book already exists");
+      }
     }
     return (
         <form onSubmit={HandlseSubmit} className="container-fluid vh1-00" style={{ marginTop: "50px" ,width:"600px",textAlign:"left"}}>

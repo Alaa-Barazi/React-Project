@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import api from './../../api/books';
-import Book from '../Book/Book';
 import { Link, useNavigate } from "react-router-dom";
 import './style.css'
 export default function AllRequests() {

@@ -49,10 +49,10 @@ export default function Book({ book}) {
             return icon;
     }    
     const handleClick = async (bookID,img) => {
-        let ID = inFavorites(book); 
-       console.log(ID);
-        if(ID!==-1){
-           const response = await api.delete(`/favorites/${ID}`);
+    const foundBook = fav.find((book) => book.bookId === bookID && book.username === user);
+       console.log(foundBook.id);
+        if(foundBook){
+           const response = await api.delete(`/favorites/${foundBook.id}`);
         }
         else{
             const favorite = {
@@ -64,9 +64,9 @@ export default function Book({ book}) {
             }
         const response = await api.post('/favorites',favorite);
      if(response){
-       // window.location.reload();
+       window.location.reload();
       }
-    }
+   }
     }
     return (
         <>

@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 import uuid from "uuid4";
 import { useState,useEffect } from 'react';
 import api from './../../api/books';
-export default function Book({ book ,Theicon}) {
+export default function Book({ book}) {
     const [fav,setFav] = useState([]);
-    const TheIcon = {Theicon};
+
    
     const user = JSON.parse(localStorage.getItem('username'));
     const retreiveallFavs = async () => {
@@ -22,20 +22,39 @@ export default function Book({ book ,Theicon}) {
         }
         getallFavs();
     }, []);
+    const inFavorites =  (thebook) =>{
+        fav.map((book)=> {
+            if (book.bookId === thebook.id && book.username === user) {
+               return book.id;
+           }
+        });
+        return -1;
+    }
     const ExistsInFavorites =  (thebook) =>{
-        if(TheIcon==="fa") return "d";
+        // if(inFavorites(thebook) ) return "🧡";
+        // else return "🤍";  
+       // if(TheIcon==="fa") return "d";
         //if(Theicon!=="0") return "🧡";
         let icon="🤍";
              fav.map((book)=> {
                  if (book.bookId === thebook.id && book.username === user) {
-                //    return thebook.icon;
-                   icon="🧡";
+                //   if(book.icon === "🧡"){
+                //     icon="🤍";
+                //   }
+                
+                    icon="🧡";
                 }
              });
             
             return icon;
     }    
     const handleClick = async (bookID,img) => {
+        let ID = inFavorites(book); 
+       console.log(ID);
+        if(ID!==-1){
+           const response = await api.delete(`/favorites/${ID}`);
+        }
+        else{
             const favorite = {
                 id:uuid(),
                 bookId:bookID,
@@ -45,8 +64,9 @@ export default function Book({ book ,Theicon}) {
             }
         const response = await api.post('/favorites',favorite);
      if(response){
-        window.location.reload();
+       // window.location.reload();
       }
+    }
     }
     return (
         <>

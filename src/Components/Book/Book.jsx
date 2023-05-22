@@ -31,7 +31,8 @@ export default function Book({ book}) {
         return -1;
     }
     const ExistsInFavorites =  (thebook) =>{
-        // if(inFavorites(thebook) ) return "🧡";
+        const foundBook = fav.find((book) => book.bookId === thebook.id && book.username === user);
+        if(foundBook ) return "🧡";
         // else return "🤍";  
        // if(TheIcon==="fa") return "d";
         //if(Theicon!=="0") return "🧡";
@@ -48,9 +49,12 @@ export default function Book({ book}) {
             
             return icon;
     }    
+    const foundInFavArr = () =>{
+        const foundBook = fav.find((book) => book.bookId === book.id && book.username === user);
+        return foundBook;
+    }
     const handleClick = async (bookID,img) => {
     const foundBook = fav.find((book) => book.bookId === bookID && book.username === user);
-       console.log(foundBook.id);
         if(foundBook){
            const response = await api.delete(`/favorites/${foundBook.id}`);
         }
@@ -84,6 +88,7 @@ export default function Book({ book}) {
                         <h6 className='card-title'>{book.name}</h6>
                         {/* <p className='text-primary font-weight-bolder'>By:{book.author}</p> */}
                         {/* <p className='text-danger'>Price:{book.price}$</p> */}
+{/* {foundInFavArr() &&   */}
                         <Link to={`/Details/${book.id}`}>
                             <div className="mt-auto p-1">
                             <button  className='btn btn-outline-info'>Details</button>

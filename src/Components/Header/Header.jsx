@@ -41,6 +41,12 @@ export default function Header() {
             }
             {user != null &&
               <li className="nav-item">
+              <button className='btn rounded' onClick={() => navigate("/Cart")}>
+              Cart  </button>
+              </li>
+            }
+            {user != null &&
+              <li className="nav-item">
               <button className='btn rounded' onClick={() => navigate("/newBlog")}>
               New Blog  </button>
               </li>

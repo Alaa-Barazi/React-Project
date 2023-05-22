@@ -2,10 +2,12 @@ import './style.css';
 import { Route, Routes, Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import uuid from "uuid4";
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useContext } from 'react';
+import { CartContext } from '../cart';
 import api from './../../api/books';
 export default function Book({ book}) {
     const [fav,setFav] = useState([]);
+    const {cart,newBook,deleteFromCart,editBook,CartForUser,ExistsInCart} = useContext(CartContext);
 
    
     const user = JSON.parse(localStorage.getItem('username'));
@@ -33,20 +35,12 @@ export default function Book({ book}) {
     const ExistsInFavorites =  (thebook) =>{
         const foundBook = fav.find((book) => book.bookId === thebook.id && book.username === user);
         if(foundBook ) return "🧡";
-        // else return "🤍";  
-       // if(TheIcon==="fa") return "d";
-        //if(Theicon!=="0") return "🧡";
         let icon="🤍";
              fav.map((book)=> {
                  if (book.bookId === thebook.id && book.username === user) {
-                //   if(book.icon === "🧡"){
-                //     icon="🤍";
-                //   }
-                
                     icon="🧡";
                 }
              });
-            
             return icon;
     }    
     const foundInFavArr = () =>{
@@ -72,16 +66,19 @@ export default function Book({ book}) {
       }
    }
     }
+    const InCart = ()=>{
+
+    }
     return (
         <>
             <div className='column '>
-                <div className="card d-flex flex-column" style={{width:"180px",height:"300px"}}>
+                <div className="card d-flex flex-column" style={{width:"180px",height:"310px"}}>
                     <center>
-                        <button style={{float:"right",width:"50px",height:"30px",backgroundColor:"transparent",fontSize:"15px"}}
+                     {user!=null &&    <button style={{float:"right",width:"50px",height:"30px",backgroundColor:"transparent",fontSize:"15px"}}
                         onClick={()=>handleClick(book.id,book.imgUrl)} >
                     
                        <span>{ExistsInFavorites(book)}</span>
-                       </button>
+                       </button> }
                     <img src={book.imgUrl} className='card-img' style={{zIndex:"-1",width:"150px",height:"150px"}} />
                     </center>
                     <div className='card-body'>
@@ -89,13 +86,22 @@ export default function Book({ book}) {
                         {/* <p className='text-primary font-weight-bolder'>By:{book.author}</p> */}
                         {/* <p className='text-danger'>Price:{book.price}$</p> */}
 {/* {foundInFavArr() &&   */}
-                        <Link to={`/Details/${book.id}`}>
-                            <div className="mt-auto p-1">
-                            <button  className='btn btn-outline-info'>Details</button>
-                            </div>
-                        </Link>
-                  
+                    
+                      
+                        
+                        <div className="btn-group m-1 btn-group-md ">
+                      <Link to={`/Details/${book.id}`}
+                        className="btn btn-outline-info">
+                        Details
+                      </Link>
+                      &nbsp;
+                      <button  className="btn btn-outline-success rounded"
+                      onClick={()=>newBook(book.id,book.name,book.imgUrl,book.author,
+                        book.price,user)}>2</button>
+                     
                     </div>
+                  </div>
+                    
 
                 </div>
             </div>

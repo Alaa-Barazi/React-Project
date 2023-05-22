@@ -60,8 +60,8 @@ export default function Details({ setBooks }) {
                                           <input type="text" className="form-control"  value={`${book.price}$`} readOnly></input>
                                         
                                 </div>
-                                <Link to="/" className="btn btn-primary">
-                        Back </Link>
+                                <button className="btn btn-primary" onClick={()=>navigate(-1)}>Back</button>
+                            
                         {username==='Admin' && <>
             <button className="btn btn-danger" onClick={() => removeBookHandler()}>Delete</button>
             <Link to={`/EditBook/${bookID}`} className="btn btn-success">

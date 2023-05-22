@@ -22,12 +22,15 @@ import DeleteBlog from './Components/deleteBlog/deleteBlog';
 import RequestBook from './Components/RequestBook/RequestBook';
 import AllRequests from './Components/AllRequests/AllRequests';
 import Favorites from './Components/Favorites/Favorites';
+import Cart from './Components/Cart/Cart';
+import { CartProvider } from './Components/cart';
 
 function App() {
   return (
     <>
       <UserProvider>
         <BlogProvider>
+          <CartProvider>
           <Header />
 
           <Routes>
@@ -41,7 +44,7 @@ function App() {
             <Route path="/Details" element={<Details />}>
               <Route path=":bookID" element={<Details />} />
             </Route>
-            
+            <Route path="/Cart" element={<Cart/>} />
             <Route path="/Favorites" element={<Favorites />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/EditProfile" element={<EditProfile />} />
@@ -61,6 +64,7 @@ function App() {
             {/* <Route path="*" element={<NotFound />} />
         <Route path="*" element={ <NotFound />}/> */}
           </Routes>
+          </CartProvider>
         </BlogProvider>
       </UserProvider>
     </>

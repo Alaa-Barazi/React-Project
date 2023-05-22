@@ -4,8 +4,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import uuid from "uuid4";
 import { useState,useEffect } from 'react';
 import api from './../../api/books';
-export default function Book({ book }) {
+export default function Book({ book ,Theicon}) {
     const [fav,setFav] = useState([]);
+    const TheIcon = {Theicon};
+   
     const user = JSON.parse(localStorage.getItem('username'));
     const retreiveallFavs = async () => {
         const response = await api.get("/favorites");
@@ -20,21 +22,26 @@ export default function Book({ book }) {
         }
         getallFavs();
     }, []);
-    const inFavprites = (bookID) =>{
-        let icon = "🤍";
-        fav.map((book)=>{
-            if(book.bookId === bookID && book.username === user){ 
-                icon="🧡";
+    const ExistsInFavorites =  (thebook) =>{
+        if(TheIcon==="fa") return "d";
+        //if(Theicon!=="0") return "🧡";
+        let icon="🤍";
+             fav.map((book)=> {
+                 if (book.bookId === thebook.id && book.username === user) {
+                //    return thebook.icon;
+                   icon="🧡";
+                }
+             });
             
-            }
-        });
-        return icon;
-    }
-    const handleClick = async (bookID) => {
+            return icon;
+    }    
+    const handleClick = async (bookID,img) => {
             const favorite = {
                 id:uuid(),
                 bookId:bookID,
-                username:user
+                imgUrl:img,
+                username:user,
+                "icon":"🧡"
             }
         const response = await api.post('/favorites',favorite);
      if(response){
@@ -47,8 +54,9 @@ export default function Book({ book }) {
                 <div className="card d-flex flex-column" style={{width:"180px",height:"300px"}}>
                     <center>
                         <button style={{float:"right",width:"50px",height:"30px",backgroundColor:"transparent",fontSize:"15px"}}
-                        onClick={()=>handleClick(book.id)} >
-                       <span> {inFavprites(book.id)} </span>
+                        onClick={()=>handleClick(book.id,book.imgUrl)} >
+                    
+                       <span>{ExistsInFavorites(book)}</span>
                        </button>
                     <img src={book.imgUrl} className='card-img' style={{zIndex:"-1",width:"150px",height:"150px"}} />
                     </center>

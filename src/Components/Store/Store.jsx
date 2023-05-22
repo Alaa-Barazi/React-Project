@@ -28,7 +28,7 @@ useEffect(() => {
             <div className='card-deck'>
             {books.map((book,index) => (
                 <div key={index} >
-                     <Book book={book} /> 
+                     <Book book={book} icon="fa" /> 
                 </div>
             ))}
             </div>

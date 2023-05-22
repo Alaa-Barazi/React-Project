@@ -21,6 +21,7 @@ import Blogs from './Components/Blogs/Blogs';
 import DeleteBlog from './Components/deleteBlog/deleteBlog';
 import RequestBook from './Components/RequestBook/RequestBook';
 import AllRequests from './Components/AllRequests/AllRequests';
+import Favorites from './Components/Favorites/Favorites';
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
             <Route path="/Details" element={<Details />}>
               <Route path=":bookID" element={<Details />} />
             </Route>
+            
+            <Route path="/Favorites" element={<Favorites />} />
             <Route path="/Profile" element={<Profile />} />
             <Route path="/EditProfile" element={<EditProfile />} />
             <Route path="/AddBook" element={<AddBook />} />

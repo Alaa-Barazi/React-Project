@@ -35,7 +35,7 @@ export default function Header() {
             </li>
             {user != null &&
               <li className="nav-item">
-              <button className='btn rounded' onClick={() => navigate("/newBlog")}>
+              <button className='btn rounded' onClick={() => navigate("/Favorites")}>
               Favorites  </button>
               </li>
             }

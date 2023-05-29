@@ -1,9 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
+import { CartContext } from '../cart';
 export default function Header() {
   const navigate = useNavigate();
+  let cnt=0;
   const user = JSON.parse(localStorage.getItem('username'));
   const psw = JSON.parse(localStorage.getItem('password'));
   const img = JSON.parse(localStorage.getItem('img'));
@@ -14,9 +16,16 @@ export default function Header() {
     localStorage.setItem('id', JSON.stringify(null));
     setShowDropdown(false);
   }
- 
+  const {cart,newBook,deleteFromCart,editBook,CartForUser,ExistsInCart} = useContext(CartContext);
+
+      let len = cart.filter(product=> product.username === user).length;
+      console.log(len);
+  
+  localStorage.setItem('count',len);
   const count = parseInt(localStorage.getItem('count'));
+
   const fav = parseInt(localStorage.getItem('fav'));
+  console.log(count);
 
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {

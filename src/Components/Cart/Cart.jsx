@@ -17,6 +17,8 @@ export default function Cart(){
     })
     return sum;
   }
+  // if(!localStorage.getItem("count"))
+  // localStorage.setItem("count",0);
   const calcCount = (all)=>{
     let cnt=0;
     all.map((book)=>{
@@ -33,10 +35,8 @@ export default function Cart(){
 useEffect(()=>{
     setCount(calcCount(filtered));
     setTotal(calcTotal(filtered));
-    if(count==="")
-      localStorage.setItem('count',0);
-      else       
-    localStorage.setItem('count', count);
+    if(localStorage.getItem('count')===" ")      
+      localStorage.setItem('count', 0);
 
 
 },[cart])

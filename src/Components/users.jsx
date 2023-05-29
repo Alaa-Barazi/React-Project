@@ -1,4 +1,7 @@
 import { createContext, useState, useEffect } from "react";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import api from '../api/books';
 import uuid from "uuid4";
 import { useNavigate } from "react-router-dom";
@@ -48,6 +51,8 @@ export function UserProvider(props) {
             localStorage.setItem('img', JSON.stringify(img));
             localStorage.setItem('id', JSON.stringify(found.id));
             localStorage.setItem('blogs', JSON.stringify(found.blogs));
+           
+
             navigate("/Home");
         }
         else

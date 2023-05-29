@@ -24,10 +24,12 @@ import AllRequests from './Components/AllRequests/AllRequests';
 import Favorites from './Components/Favorites/Favorites';
 import Cart from './Components/Cart/Cart';
 import { CartProvider } from './Components/cart';
+import EditBlog from './Components/EditBlog/EditBlog';
 
 function App() {
   return (
     <>
+    
       <UserProvider>
         <BlogProvider>
           <CartProvider>
@@ -51,6 +53,11 @@ function App() {
             <Route path="/AddBook" element={<AddBook />} />
             <Route path="/newBlog" element={<NewBlog />} />
             <Route path="/Blogs" element={<Blogs />} /> 
+            <Route peth="/EditBlog" element={<EditBlog />} >
+
+              <Route path=":blogID" element={<EditBlog />}/>
+            </Route>
+            
               <Route path="/DeleteBlog" element={<DeleteBlog />}>
               <Route path=":blogID" element={<Details />} />
 

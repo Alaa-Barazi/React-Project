@@ -21,7 +21,7 @@ export function CartProvider(props) {
     }, []);
 
     const newBook = async(id,nameB,imgUrlB,authorB,priceB,usernameB) =>{
-        const find = cart.find(book=> book.id===id);
+        const find = cart.find(book=> book.id===id && book.username === user);
        console.log(user)
         if(find!=null){
             editBook(id,nameB,imgUrlB,authorB,priceB,(find.Qty+1));
@@ -38,6 +38,11 @@ export function CartProvider(props) {
         }
 
         const response = await api.post('/Cart',book);
+        const count = parseInt(localStorage.getItem('count'));
+        count++;
+        localStorage.setItem('count', JSON.stringify(count));
+
+      
     }
     window.location.reload();
     }

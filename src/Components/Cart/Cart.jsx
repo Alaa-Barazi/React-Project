@@ -31,8 +31,10 @@ export default function Cart(){
     setCurrent(TheCart);
  },[]);
 useEffect(()=>{
-    setCount(calcCount(cart));
-    setTotal(calcTotal(cart));
+    setCount(calcCount(filtered));
+    setTotal(calcTotal(filtered));
+    localStorage.setItem('count', JSON.stringify(count));
+
 },[cart])
   return (
     <>

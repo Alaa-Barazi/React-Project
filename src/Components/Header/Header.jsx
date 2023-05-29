@@ -14,6 +14,7 @@ export default function Header() {
     localStorage.setItem('id', JSON.stringify(null));
     setShowDropdown(false);
   }
+  const count = parseInt(localStorage.getItem('count'));
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -42,7 +43,12 @@ export default function Header() {
             {user != null &&
               <li className="nav-item">
               <button className='btn rounded' onClick={() => navigate("/Cart")}>
-              Cart  </button>
+              Cart  
+              <span className="badge badge-secondary" style={{color:"red"}}>
+                {count}
+              </span>
+              
+              </button>
               </li>
             }
             {user != null &&

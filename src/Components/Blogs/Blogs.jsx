@@ -75,7 +75,7 @@ export default function Blogs() {
                         Delete
                       </Link>
                       &nbsp;
-                      <Link to={"/Home"} className="btn btn-success rounded">
+                      <Link to={`/EditBlog/${blog.id}`} className="btn btn-success rounded">
                         Edit
                       </Link>
                     </div>

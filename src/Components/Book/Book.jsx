@@ -91,14 +91,15 @@ export default function Book({ book}) {
                         
                         <div className="btn-group m-1 btn-group-md ">
                       <Link to={`/Details/${book.id}`}
-                        className="btn btn-outline-info">
+                        className="btn btn-outline-info rounded">
                         Details
                       </Link>
                       &nbsp;
+                      {user!=null &&
                       <button  className="btn btn-outline-success rounded"
                       onClick={()=>newBook(book.id,book.name,book.imgUrl,book.author,
                         book.price,user)}>Cart</button>
-                     
+                    }
                     </div>
                   </div>
                     

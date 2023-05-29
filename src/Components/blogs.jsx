@@ -55,13 +55,14 @@ export function BlogProvider(props) {
         }
 
     }
-    const editBlog = async (id,title,text,img,username) =>{
+    const editBlog = async (id,title,text,img,username,date) =>{
         const blog = {
             id:id,
             title:title,
             body:text,
             imgURL:img,
-            username:username
+            username:username,
+            date:date
         }
         const response = await api.put(`/blogs/${id}`,blog);
     }

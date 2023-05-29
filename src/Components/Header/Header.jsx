@@ -17,16 +17,15 @@ export default function Header() {
     setShowDropdown(false);
   }
   const {cart,newBook,deleteFromCart,editBook,CartForUser,ExistsInCart} = useContext(CartContext);
-
-      let len = cart.filter(product=> product.username === user).length;
-      console.log(len);
   
-  localStorage.setItem('count',len);
+  cart.map((product)=>{
+    if(product.username === user){
+      cnt+=product.Qty;
+    }
+  });
+  localStorage.setItem('count',cnt);
   const count = parseInt(localStorage.getItem('count'));
-
   const fav = parseInt(localStorage.getItem('fav'));
-  console.log(count);
-
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);

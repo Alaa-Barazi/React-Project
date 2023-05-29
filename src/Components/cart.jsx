@@ -10,6 +10,8 @@ export function CartProvider(props) {
         const response = await api.get("/Cart");
         return response.data;
     }
+ if(!localStorage.getItem("count"))
+    localStorage.setItem("count",0);
     useEffect(() => {
         const getallCart = async () => {
             const allCart = await retreiveallCart();
@@ -38,12 +40,17 @@ export function CartProvider(props) {
         }
 
         const response = await api.post('/Cart',book);
-        const count = parseInt(localStorage.getItem('count'));
+        if(!localStorage.getItem("count"))
+        localStorage.setItem("count",0);
+        else{
+        let count = parseInt(localStorage.getItem('count'));
         count++;
         localStorage.setItem('count', JSON.stringify(count));
-
+        }
       
     }
+    
+    
     window.location.reload();
     }
     const deleteFromCart = async(id)=>{
@@ -58,6 +65,9 @@ export function CartProvider(props) {
        
         if(QtyB==0) {
             deleteFromCart(id);
+            let  count = parseInt(localStorage.getItem('count'));
+        count--;
+        localStorage.setItem('count', JSON.stringify(count));
         }
         else{
            

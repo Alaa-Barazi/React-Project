@@ -14,7 +14,10 @@ export default function Header() {
     localStorage.setItem('id', JSON.stringify(null));
     setShowDropdown(false);
   }
+ 
   const count = parseInt(localStorage.getItem('count'));
+  const fav = parseInt(localStorage.getItem('fav'));
+
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
@@ -37,7 +40,12 @@ export default function Header() {
             {user != null &&
               <li className="nav-item">
               <button className='btn rounded' onClick={() => navigate("/Favorites")}>
-              Favorites  </button>
+              Favorites 
+              <span className="badge badge-secondary" style={{color:"red"}}>
+              {fav}
+              </span>
+              
+               </button>
               </li>
             }
             {user != null &&

@@ -51,6 +51,11 @@ export default function Book({ book}) {
     const foundBook = fav.find((book) => book.bookId === bookID && book.username === user);
         if(foundBook){
            const response = await api.delete(`/favorites/${foundBook.id}`);
+           alert("Deleted!");
+           window.location.reload();
+           let count = parseInt(localStorage.getItem('fav'));
+           count--;
+           localStorage.setItem('fav', JSON.stringify(count));
         }
         else{
             const favorite = {
@@ -62,6 +67,9 @@ export default function Book({ book}) {
             }
         const response = await api.post('/favorites',favorite);
      if(response){
+        let count = parseInt(localStorage.getItem('fav'));
+   count++;
+   localStorage.setItem('fav', JSON.stringify(count));
        window.location.reload();
       }
    }

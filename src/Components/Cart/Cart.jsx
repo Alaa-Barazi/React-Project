@@ -33,21 +33,15 @@ export default function Cart(){
 useEffect(()=>{
     setCount(calcCount(filtered));
     setTotal(calcTotal(filtered));
-    localStorage.setItem('count', JSON.stringify(count));
+    if(count==="")
+      localStorage.setItem('count',0);
+      else       
+    localStorage.setItem('count', count);
+
 
 },[cart])
   return (
-    <>
-{/* 
-   <table>
-    
-    <tr>
-    
-      <th><p>Total: {total}$ ==</p></th>
-      <th><p>{count} Items</p></th>
-    </tr>
-   </table> */}
-              
+    <>              
 <div className="left" style={{width:"100px"}}> 
     <p className="text-black bg-info rounded" > Total : {total}$ </p>
     <p className="text-black bg-warning rounded"> Items : {count} </p>

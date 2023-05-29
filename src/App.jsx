@@ -53,7 +53,7 @@ function App() {
             <Route path="/AddBook" element={<AddBook />} />
             <Route path="/newBlog" element={<NewBlog />} />
             <Route path="/Blogs" element={<Blogs />} /> 
-            <Route peth="/EditBlog" element={<EditBlog />} >
+            <Route path="/EditBlog" element={<EditBlog />} >
 
               <Route path=":blogID" element={<EditBlog />}/>
             </Route>

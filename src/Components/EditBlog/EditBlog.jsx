@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { BlogContext } from '../blogs';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
@@ -12,28 +12,26 @@ export default function EditBlog(){
     const [title, setTitle] = useState("");
     const [blog,setBlog] = useState("");
     const username = JSON.parse(localStorage.getItem("username"));
-    const findBlog=()=>{
-        const blg = BlogsForUser.find(blog=>blog.id === blogID);
-        if(blg){
-            setBlog(blg);
-        }
-    }
+    useEffect(()=>{      
+            const blg = blogs.find(blog=>blog.id === blogID);
+            if(blg){
+                setBlog(blg);
+            }
+      if(blg){
+           setText(blg.body);
+          setTitle(blg.title);
+         setImg(blg.imgURL);
+      }
+        
+    },[]);
     const handleSubmit = (event) => {
         event.preventDefault();
-        //id,title,text,img,username
-        editBlog(blog.id,title,text,blog.imgURL,blog.date);
+        editBlog(blog.id,title,text,blog.imgURL,blog.username,blog.date);
         alert('Updated Succefully');
         navigate('/Home');
       }
-      findBlog();
-      setText(blog.body);
-      setTitle(blog.title);
-    //   "title": "Hello World",
-    //   "body": "Hello, World How are you doin'?",
-    //   "imgURL": "https://i.pinimg.com/originals/e7/c2/47/e7c2479ab659fa92fd6e1b99c9c96367.png",
-    //   "username": "Alaa Barazi",
-    //   "date":
-      console.log(blog+" "+text+" "+title);
+      
+      
       
   return (
     <center>

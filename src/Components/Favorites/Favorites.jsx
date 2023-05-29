@@ -10,8 +10,8 @@ export default function Favorites(){
         const response = await api.get("/favorites");
         return response.data;
        }
-       if(!localStorage.getItem("fav"))
-             localStorage.setItem("fav",0);
+    //    if(!localStorage.getItem("fav"))
+    //          localStorage.setItem("fav",0);
 useEffect(() => {
    const getAllFavs = async ()=>{
     const allBooks = await retreiveallFavs();

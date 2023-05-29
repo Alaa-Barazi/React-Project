@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
+import api from './../../api/books';
 import { CartContext } from '../cart';
 export default function Header() {
   const navigate = useNavigate();
-  let cnt=0;
+  let cnt = 0;
   const user = JSON.parse(localStorage.getItem('username'));
   const psw = JSON.parse(localStorage.getItem('password'));
   const img = JSON.parse(localStorage.getItem('img'));
@@ -16,14 +17,39 @@ export default function Header() {
     localStorage.setItem('id', JSON.stringify(null));
     setShowDropdown(false);
   }
-  const {cart,newBook,deleteFromCart,editBook,CartForUser,ExistsInCart} = useContext(CartContext);
+  const [favs, setFavs] = useState([]);
+
+  const retreiveallFavs = async () => {
+    const response = await api.get("/favorites");
+    return response.data;
+  }
   
-  cart.map((product)=>{
-    if(product.username === user){
-      cnt+=product.Qty;
+  useEffect(() => {
+    const getAllFavs = async () => {
+      const allBooks = await retreiveallFavs();
+      if (allBooks) {
+        setFavs(allBooks);
+      }
+    }
+    getAllFavs();
+
+
+  }, []);
+  let cnt2=0;
+  favs.map((product)=>{
+    if (product.username === user) {
+      cnt2 ++;
+    }
+  })
+  const { cart, newBook, deleteFromCart, editBook, CartForUser, ExistsInCart } = useContext(CartContext);
+
+  cart.map((product) => {
+    if (product.username === user) {
+      cnt += product.Qty;
     }
   });
-  localStorage.setItem('count',cnt);
+  localStorage.setItem('fav',cnt2)
+  localStorage.setItem('count', cnt);
   const count = parseInt(localStorage.getItem('count'));
   const fav = parseInt(localStorage.getItem('fav'));
   const [showDropdown, setShowDropdown] = useState(false);
@@ -43,34 +69,34 @@ export default function Header() {
               <button className="btn rounded" onClick={() => navigate("/Home")}>Home</button>
             </li>
             <li className="nav-item">
-            <button className="btn rounded" onClick={() => navigate("/Blogs")}>Blogs  </button>
+              <button className="btn rounded" onClick={() => navigate("/Blogs")}>Blogs  </button>
             </li>
             {user != null &&
               <li className="nav-item">
-              <button className='btn rounded' onClick={() => navigate("/Favorites")}>
-              Favorites 
-              <span className="badge badge-secondary" style={{color:"red"}}>
-              {fav}
-              </span>
-              
-               </button>
+                <button className='btn rounded' onClick={() => navigate("/Favorites")}>
+                  Favorites
+                  <span className="badge badge-secondary" style={{ color: "red" }}>
+                    {cnt2}
+                  </span>
+
+                </button>
               </li>
             }
             {user != null &&
               <li className="nav-item">
-              <button className='btn rounded' onClick={() => navigate("/Cart")}>
-              Cart  
-              <span className="badge badge-secondary" style={{color:"red"}}>
-                {count}
-              </span>
-              
-              </button>
+                <button className='btn rounded' onClick={() => navigate("/Cart")}>
+                  Cart
+                  <span className="badge badge-secondary" style={{ color: "red" }}>
+                    {count}
+                  </span>
+
+                </button>
               </li>
             }
             {user != null &&
               <li className="nav-item">
-              <button className='btn rounded' onClick={() => navigate("/newBlog")}>
-              New Blog  </button>
+                <button className='btn rounded' onClick={() => navigate("/newBlog")}>
+                  New Blog  </button>
               </li>
             }
             {user === 'Admin' && <li className="nav-item" style={{ float: "right" }}>

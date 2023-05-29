@@ -4,16 +4,17 @@ import { BlogContext } from '../blogs';
 import { Link, Outlet } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+
 export default function Blogs() {
   const { blogs, newBlog, deleteBlog, editBlog, BlogsForUser } = useContext(BlogContext);
   const username = JSON.parse(localStorage.getItem("username"));
   const [blogsToShow, setBlogs] = useState([]);
-  const [modalShow, setModalShow] = useState(false);
+  const [modalShow, setModalShow] = useState(Array(blogs.length).fill(false)); 
+
   function MyVerticallyCenteredModal(props) {
     return (
       <Modal
         {...props}
-       
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -21,7 +22,6 @@ export default function Blogs() {
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             {props.blog.title}
-            {console.log(props)}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -35,6 +35,19 @@ export default function Blogs() {
       </Modal>
     );
   }
+
+  const handleModalShow = (index) => {
+    const updatedModalShow = [...modalShow];
+    updatedModalShow[index] = true;
+    setModalShow(updatedModalShow);
+  };
+
+  const handleModalHide = (index) => {
+    const updatedModalShow = [...modalShow];
+    updatedModalShow[index] = false;
+    setModalShow(updatedModalShow);
+  };
+
   return (
     <>
       <br /><br />
@@ -43,7 +56,7 @@ export default function Blogs() {
       <button onClick={() => setBlogs(blogs)} className='btn btn-primary'>All Blogs </button>
       <br /> <br />
       <div className="row mb-2">
-        {blogsToShow.map((blog) =>
+        {blogsToShow.map((blog, index) =>
           <>
             <div key={blog.id} className="col-md-6" >
               <div className="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -53,12 +66,13 @@ export default function Blogs() {
                   <div className="mb-1 text-muted">{blog.date}</div>
                   <p className="card-text mb-auto">{blog.body}</p>
 
-                  <button className="btn btn-outline-primary rounded" onClick={() => setModalShow(true)}>
-                    More </button>
+                  <button className="btn btn-outline-primary rounded" onClick={() => handleModalShow(index)}>
+                    More
+                  </button>
                   <MyVerticallyCenteredModal
                     blog={blog}
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
+                    show={modalShow[index]}
+                    onHide={() => handleModalHide(index)}
                   />
                 </div>
                 <div key={blog.id} className="col-auto d-none d-lg-block" >

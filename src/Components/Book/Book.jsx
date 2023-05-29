@@ -97,7 +97,7 @@ export default function Book({ book}) {
                       &nbsp;
                       <button  className="btn btn-outline-success rounded"
                       onClick={()=>newBook(book.id,book.name,book.imgUrl,book.author,
-                        book.price,user)}>2</button>
+                        book.price,user)}>Cart</button>
                      
                     </div>
                   </div>

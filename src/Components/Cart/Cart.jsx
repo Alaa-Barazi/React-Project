@@ -46,32 +46,17 @@ useEffect(()=>{
     </tr>
    </table> */}
               
-<div className="left"> 
-    <p className="text-black bg-info rounded" > Total : {total} </p>
+<div className="left" style={{width:"100px"}}> 
+    <p className="text-black bg-info rounded" > Total : {total}$ </p>
     <p className="text-black bg-warning rounded"> Items : {count} </p>
     </div>
     <br/>
     <div className="cardDeck" style={{ display: "flex", flexWrap: "wrap" }}>
-       
       {filtered.map((book,index) => {
               return (
-                // <div key={index} className="card" style={{ margin: "1px" ,width:"auto"}}>
-                //   <center>
-                //   <h4>  {shoe.name}</h4>
-                //   <img src={shoe.picture} alt='picture' width={"150px"} height={"150px"} />
-                //   <p>{shoe.price}$</p> 
-                 
-           
-           
-                //   <button onClick={()=>removeHandler(shoe.id)} className="btn btn-danger">Remove </button>
-               
-                //   </center>
-                // </div>
-           
                 <div className='column' key={index}>
                 <div className="card d-flex flex-column" style={{width:"200px",height:"380px"}}>
                     <center>
-                     
                     <img src={book.imgUrl} className='card-img' style={{zIndex:"-1",width:"150px",height:"150px"}} />
                     </center>
                     <div className='card-body'>
@@ -79,9 +64,6 @@ useEffect(()=>{
                          
                          <p className='text-danger'>Price:{book.price}$</p>
                          <p className="text-info">Qty :{book.Qty}</p>
-{/* {foundInFavArr() &&   */}
-
-                       
                         <div className="col-md-0">
                     <div className=" btn-group-sm ">
                     <Link to={`/Details/${book.id}`}>
@@ -94,21 +76,16 @@ useEffect(()=>{
                        onClick={()=>editBook(book.id,book.name,book.imgUrl,book.author,
                         book.price,(book.Qty-1),book.username)}
                       >Delete 1</button>
-
                       &nbsp;
                       <button  className='btn btn-outline-success'
                       onClick={()=>editBook(book.id,book.name,book.imgUrl,book.author,
                         book.price,(book.Qty+1),book.username)}
                       >Add 1</button>
-                     
-                    
-                    
                     </div>
                   </div>
                     </div>
                 </div>
             </div>
-               
               );
             })}
       </div>

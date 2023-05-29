@@ -41,7 +41,6 @@ export default function Blogs() {
     updatedModalShow[index] = true;
     setModalShow(updatedModalShow);
   };
-
   const handleModalHide = (index) => {
     const updatedModalShow = [...modalShow];
     updatedModalShow[index] = false;

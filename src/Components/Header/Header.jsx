@@ -98,7 +98,7 @@ export default function Header() {
                 <button className='btn rounded' onClick={() => { navigate("/Favorites"); closeNavbar(); }}>
                   Favorites
                   <span className="badge badge-secondary" style={{ color: "red" }}>
-                    {cnt2}
+                    {fav}
                   </span>
                 </button>
               </li>

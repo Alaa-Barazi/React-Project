@@ -1,5 +1,5 @@
 import './style.css';
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link,useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';
 import uuid from "uuid4";
 import { useState,useEffect,useContext } from 'react';
@@ -8,7 +8,7 @@ import api from './../../api/books';
 export default function Book({ book}) {
     const [fav,setFav] = useState([]);
     const {cart,newBook,deleteFromCart,editBook,CartForUser,ExistsInCart} = useContext(CartContext);
-
+    const navigate = useNavigate();
    
     const user = JSON.parse(localStorage.getItem('username'));
     const retreiveallFavs = async () => {
@@ -51,8 +51,8 @@ export default function Book({ book}) {
     const foundBook = fav.find((book) => book.bookId === bookID && book.username === user);
         if(foundBook){
            const response = await api.delete(`/favorites/${foundBook.id}`);
-           alert("Deleted!");
-           window.location.reload();
+           //alert("Deleted!");
+           navigate('/Home');
            let count = parseInt(localStorage.getItem('fav'));
            count--;
            localStorage.setItem('fav', JSON.stringify(count));
@@ -70,12 +70,9 @@ export default function Book({ book}) {
         let count = parseInt(localStorage.getItem('fav'));
    count++;
    localStorage.setItem('fav', JSON.stringify(count));
-       window.location.reload();
+   navigate('/favorites');
       }
    }
-    }
-    const InCart = ()=>{
-
     }
     return (
         <>

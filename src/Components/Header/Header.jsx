@@ -56,7 +56,6 @@ export default function Header() {
   localStorage.setItem('count', cnt);
   count = parseInt(localStorage.getItem('count'));
   fav = parseInt(localStorage.getItem('fav'));
-
   
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {

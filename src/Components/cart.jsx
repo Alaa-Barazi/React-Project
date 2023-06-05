@@ -115,12 +115,12 @@ export function CartProvider(props) {
 
   return (
     <CartContext.Provider value={{ cart, newBook, deleteFromCart, editBook, CartForUser, ExistsInCart }}>
+      {props.children}
       {showUpdate && (
       <div className="update-message">
         <p style={{ fontWeight: "bolder", fontSize: "1.2rem",color:"black",top:"0" }}>{updateMessage}</p>
       </div>
     )}
-      {props.children}
     </CartContext.Provider>
   );
 }

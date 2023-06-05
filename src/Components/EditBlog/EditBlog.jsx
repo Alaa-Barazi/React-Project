@@ -42,7 +42,7 @@ export default function EditBlog(){
               <div className="row no-gutters mb-5">
                 <div className="col-md-7">
                   <div className="contact-wrap w-100 p-md-5 p-4">
-                    <h3 className="mb-4">New blog</h3>
+                    <h3 className="mb-4">Edit blog</h3>
                     <div id="form-message-warning" className="mb-4"></div>
                     <form method="POST" id="contactForm" name="contactForm" className="contactForm" onSubmit={handleSubmit}>
                       <div className="row">
@@ -84,7 +84,7 @@ export default function EditBlog(){
                           <div className="btn-group m-3 ">
                           <input type="reset" value="Reset" className="btn btn-secondary rounded" /> 
                           &nbsp; 
-                            <input type="submit" value="Create Blog" className="btn btn-primary rounded" />
+                            <input type="submit" value="Edit Blog" className="btn btn-primary rounded" />
                           </div>
                           
                         </div>

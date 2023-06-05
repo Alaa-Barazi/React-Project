@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const CartContext = createContext();
 export function CartProvider(props) {
     const [cart, setCart] = useState([]);
+    const [showUpdate,setShowUpdate] = useState(false);
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('username'));
     const retreiveallCart = async () => {
@@ -26,6 +27,11 @@ export function CartProvider(props) {
        console.log(user)
         if(find!=null){
             editBook(id,nameB,imgUrlB,authorB,priceB,(find.Qty+1));
+            setShowUpdate(true);
+            showUpdate && "new Book Inserted Updated!!";
+            setTimeout(()=>{
+                setShowUpdate(false);
+            },3000)
         }
         else{
         const book = {
@@ -46,9 +52,9 @@ export function CartProvider(props) {
         
       
     }
+   
     
-    
-    window.location.reload();
+   
     }
     const deleteFromCart = async(id)=>{
         const response = await api.delete(`/Cart/${id}`);
@@ -80,7 +86,11 @@ export function CartProvider(props) {
         const response = await api.put(`/Cart/${id}`,book);
         
     }
-    window.location.reload();
+    setShowUpdate(true);
+    showUpdate && "new Book Inserted Updated!!";
+    setTimeout(()=>{
+        setShowUpdate(false);
+    },300)
     }
     const CartForUser = (username) =>{
         

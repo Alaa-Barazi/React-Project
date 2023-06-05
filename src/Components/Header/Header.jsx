@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Header.css';
 import api from './../../api/books';
 import { CartContext } from '../cart';
-
 export default function Header() {
   const navigate = useNavigate();
   let cnt = 0;
@@ -20,9 +19,7 @@ export default function Header() {
     setShowDropdown(false);
     setNavbarOpen(false);
   }
-
   const [favs, setFavs] = useState([]);
-
   const retreiveallFavs = async () => {
     const response = await api.get("/favorites");
     return response.data;
@@ -56,17 +53,14 @@ export default function Header() {
   localStorage.setItem('count', cnt);
   count = parseInt(localStorage.getItem('count'));
   fav = parseInt(localStorage.getItem('fav'));
-  
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
-
   const [navbarOpen, setNavbarOpen] = useState(false);
   const toggleNavbar = () => {
     setNavbarOpen(!navbarOpen);
   };
-
   const closeNavbar = () => {
     setNavbarOpen(false);
   };
@@ -75,6 +69,7 @@ export default function Header() {
   };
   return (
     <div>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
  <nav className="navbar navbar-expand-lg navbar-light fixed-top" style={{ backgroundColor: "#e3f2fd" }}>   
  <Link className="navbar-brand" to="/Home">
           <h3>The Store</h3>
@@ -82,8 +77,7 @@ export default function Header() {
         <button
           className="navbar-toggler"
           type="button"
-          onClick={toggleNavbar}
-        >
+          onClick={toggleNavbar}>
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className={`collapse navbar-collapse ${navbarOpen ? 'show' : ''}`}>
@@ -145,10 +139,13 @@ export default function Header() {
             <li className="nav-item">
               {user == null &&
                 <Link to={"/Login"}>
-                  <button className='btn btn-info'>Login <span>&#x27AD;</span></button>
+                  <button className='btn btn-info'>Login  &nbsp;
+                  <i className="fas fa-sign-in-alt"></i>
+                  </button>
                 </Link>
               }
             </li>
+            &nbsp; &nbsp;
             <li className="nav-item">
         {user != null && (
           <div className="profile-dropdown">
@@ -156,11 +153,12 @@ export default function Header() {
               <img src={img} alt="Profile Avatar" className="profile-pic" />
             </div>
             {showDropdown && (
-              <ul className="dropdown-menu dropdown-menu-right show">
+              <ul className="dropdown-menu dropdown-menu-right">
                 <Link to={"/Profile"}>
                   <li>
                     <button className="btn btn-primary" onClick={closeDropdown}>
-                      Profile <span>&#x27AD;</span>
+                      Profile &nbsp; &nbsp; 
+                      <i className="fas fa-user" ></i>
                     </button>
                   </li>
                 </Link>
@@ -168,7 +166,7 @@ export default function Header() {
                 <Link to={"/Login"}>
                   <li>
                     <button className="btn btn-danger" onClick={() => { logOut(); closeDropdown(); }}>
-                      LogOut <span>&#x27AD;</span>
+                      LogOut &nbsp;  <i className="fas fa-sign-out-alt" style={{ color: "white" }}></i>
                     </button>
                   </li>
                 </Link>

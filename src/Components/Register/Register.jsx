@@ -93,7 +93,6 @@ export default function Register() {
                         <div className="signup-image">
                             <figure><img src="https://th.bing.com/th/id/OIP.det8Tl1YoKPw04e5vETggAAAAA?pid=ImgDet&w=294&h=314&rs=1" alt="sing up image" /></figure>
                             <Link to={"/Login"}>
-
                                 <button className='btn signup-image-link' style={{ float: "right" }}>I am already member <span>&#x27AD;</span> </button>
                             </Link>
 

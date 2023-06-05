@@ -55,7 +55,7 @@ export default function Login() {
                     <label htmlFor="remember-me" className="label-agree-term"><span><span></span></span>Remember me</label>
                   </div>
                   <div className="form-group form-button">
-                    <input type="submit" name="signin" id="signin" className="form-submit" value="Log in" />
+                    <input type="submit" name="signin" id="signin" className="form-submit" value="Login" />
                   </div>
                 </form>
 

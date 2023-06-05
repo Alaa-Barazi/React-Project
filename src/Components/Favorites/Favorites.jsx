@@ -25,9 +25,9 @@ useEffect(() => {
         const foundBook = fav.find((book) => book.bookId === bookID && book.username === user);
                const response = await api.delete(`/favorites/${foundBook.id}`);
               
-               
            let count = parseInt(localStorage.getItem('fav'));
            count--;
+           
            localStorage.setItem('fav', JSON.stringify(count));
            navigate('/Home');
           

@@ -88,12 +88,6 @@ export default function Book({ book}) {
                     </center>
                     <div className='card-body'>
                         <h6 className='card-title'>{book.name}</h6>
-                        {/* <p className='text-primary font-weight-bolder'>By:{book.author}</p> */}
-                        {/* <p className='text-danger'>Price:{book.price}$</p> */}
-{/* {foundInFavArr() &&   */}
-                    
-                      
-                        
                         <div className="btn-group m-1 btn-group-md ">
                       <Link to={`/Details/${book.id}`}
                         className="btn btn-outline-info rounded">

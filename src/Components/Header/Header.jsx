@@ -8,6 +8,7 @@ import { CartContext } from '../cart';
 export default function Header() {
   const navigate = useNavigate();
   let cnt = 0;
+  let cnt2 = 0;
   const user = JSON.parse(localStorage.getItem('username'));
   const psw = JSON.parse(localStorage.getItem('password'));
   const img = JSON.parse(localStorage.getItem('img'));
@@ -26,7 +27,8 @@ export default function Header() {
     const response = await api.get("/favorites");
     return response.data;
   }
-
+  let count = parseInt(localStorage.getItem('count'));
+  let fav = parseInt(localStorage.getItem('fav'));
   useEffect(() => {
     const getAllFavs = async () => {
       const allBooks = await retreiveallFavs();
@@ -36,26 +38,26 @@ export default function Header() {
     }
     getAllFavs();
   }, []);
-
-  let cnt2 = 0;
-  favs.map((product) => {
-    if (product.username === user) {
-      cnt2++;
-    }
-  });
-
   const { cart, newBook, deleteFromCart, editBook, CartForUser, ExistsInCart } = useContext(CartContext);
-
-  cart.map((product) => {
-    if (product.username === user) {
-      cnt += product.Qty;
-    }
-  });
-
+  const calc = () =>{
+    favs.map((product) => {
+      if (product.username === user) {
+        cnt2++;
+      }
+    });
+    cart.map((product) => {
+      if (product.username === user) {
+        cnt += product.Qty;
+      }
+    });
+  }
+  calc();
   localStorage.setItem('fav', cnt2);
   localStorage.setItem('count', cnt);
-  const count = parseInt(localStorage.getItem('count'));
-  const fav = parseInt(localStorage.getItem('fav'));
+  count = parseInt(localStorage.getItem('count'));
+  fav = parseInt(localStorage.getItem('fav'));
+
+  
   const [showDropdown, setShowDropdown] = useState(false);
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);

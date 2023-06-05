@@ -36,6 +36,7 @@ export function CartProvider(props) {
       setTimeout(() => {
         setShowUpdate(false);
         setUpdateMessage("");
+        navigate('/Cart');
       }, 3000);
     } else {
       const book = {
@@ -53,6 +54,9 @@ export function CartProvider(props) {
       setTimeout(() => {
         setShowUpdate(false);
         setUpdateMessage("");
+        alert("Added");
+        //need refresh or something cuz its not showng update
+        
       }, 3000);
       let count = parseInt(localStorage.getItem('count'));
       count++;
@@ -76,6 +80,13 @@ export function CartProvider(props) {
       let count = parseInt(localStorage.getItem('count'));
       count--;
       localStorage.setItem('count', JSON.stringify(count));
+      setShowUpdate(true);
+    setUpdateMessage("Book deleted!!");
+    setTimeout(() => {
+      setShowUpdate(false);
+      setUpdateMessage("");
+      navigate('/Home');
+    }, 3000);
     } else {
       const book = {
         id: id,
@@ -87,14 +98,14 @@ export function CartProvider(props) {
         username: user
       }
       const response = await api.put(`/Cart/${id}`, book);
+      setShowUpdate(true);
+      setUpdateMessage("Book Quantity Updated!!");
+      setTimeout(() => {
+          setShowUpdate(false);
+          setUpdateMessage("");
+          navigate('/Home');
+        }, 3000);
     }
-    setShowUpdate(true);
-    setUpdateMessage("Book Quantity Updated!!");
-    setTimeout(() => {
-      setShowUpdate(false);
-      setUpdateMessage("");
-      navigate('/Home');
-    }, 3000);
   }
 
   const CartForUser = (username) => {
@@ -104,12 +115,12 @@ export function CartProvider(props) {
 
   return (
     <CartContext.Provider value={{ cart, newBook, deleteFromCart, editBook, CartForUser, ExistsInCart }}>
-      {props.children}
       {showUpdate && (
       <div className="update-message">
-        <p style={{ fontWeight: "bolder", fontSize: "1.2rem",color:"black" }}>{updateMessage}</p>
+        <p style={{ fontWeight: "bolder", fontSize: "1.2rem",color:"black",top:"0" }}>{updateMessage}</p>
       </div>
     )}
+      {props.children}
     </CartContext.Provider>
   );
 }

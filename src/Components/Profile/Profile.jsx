@@ -28,7 +28,6 @@ export default function Profile (){
       
        setBlog(cnt);
       localStorage.setItem('blogs',blogs);
-     
     };
 
     fetchData();

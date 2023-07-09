@@ -41,6 +41,7 @@ export function BlogProvider(props) {
             const response2 = await api.patch(`/users/${id}`, {
                 blogs: currentBlogs
              });
+             window.location.reload();
         }
     }
     const deleteBlog = async(id)=>{
@@ -53,6 +54,7 @@ export function BlogProvider(props) {
                 blogs: currentBlogs
              });  
         }
+        window.location.reload();
 
     }
     const editBlog = async (id,title,text,img,username,date) =>{
@@ -65,6 +67,7 @@ export function BlogProvider(props) {
             date:date
         }
         const response = await api.put(`/blogs/${id}`,blog);
+        window.location.reload();
     }
     const BlogsForUser = (username) =>{
         const UserBlogs = blogs.filter(blog => blog.username === username);

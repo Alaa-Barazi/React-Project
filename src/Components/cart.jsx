@@ -62,6 +62,7 @@ export function CartProvider(props) {
       count++;
       localStorage.setItem('count', JSON.stringify(count));
     }
+    window.location.reload();
   }
 
   const deleteFromCart = async (id) => {
@@ -106,6 +107,7 @@ export function CartProvider(props) {
           navigate('/Home');
         }, 3000);
     }
+    window.location.reload();
   }
 
   const CartForUser = (username) => {
